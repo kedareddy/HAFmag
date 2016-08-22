@@ -1,0 +1,54 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+	<meta charset="UTF-8" />
+	<title>Phaser - Making your first game, part 3</title>
+	<script type="text/javascript" src="js/phaser.min.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+
+var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+    
+var text;
+var counter = 0;
+
+function preload() {
+
+    game.load.image('preanger', 'assets/anger1.png');
+    game.load.image('postanger', 'assets/anger2.jpg');
+
+}
+
+function create() {
+ 
+    
+	var image = game.add.sprite(0, 0, 'preanger');
+    image.inputEnabled = true;
+    text = game.add.text(250, 25, '', { fill: '#ffffff' });
+    text.text = "DON'T YOU DARE.";
+    image.events.onInputDown.add(listener, this);
+}
+    
+function listener () {
+
+    counter++;
+  //  text.text = "You clicked " + counter + " times!";
+    console.log("I'm in listener");
+    game.add.sprite(0,0,'postanger');
+
+}
+
+function update() {
+}
+
+</script>
+
+</body>
+</html>
